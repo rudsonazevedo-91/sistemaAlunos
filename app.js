@@ -33,7 +33,7 @@ while (executando) {
 
             let nome = readline.question("Nome: ");
             let idade = Number(readline.question("Idade: "));
-            let nota = Number(readline.question("Nota: "));
+            let nota = parseFloat(readline.question("Nota: "));
 
             // TODO:
             // Verificar se a nota está entre 0 e 10
@@ -49,16 +49,11 @@ while (executando) {
                 // Adicionar o aluno ao array
                 alunos.push(aluno);
                 console.log("\n Aluno cadastrado com sucesso!");
-        } else {
+        }   else {
+                // Exception para nota inválida
                 console.log("Nota inválida! \n A nota deve estar entre 0 e 10.");
-                break;
         }
-
-
-
-
             break;
-
 
         // --------------------------------
         // LISTAR
@@ -69,15 +64,22 @@ while (executando) {
 
             // TODO:
             // Verificar se existem alunos cadastrados
-
-            // TODO:
-            // Percorrer o array utilizando FOR
-
-            // Mostrar:
-            // Nome
-            // Idade
-            // Nota
-
+            if (alunos.length > 0) {
+                // TODO:
+               // Percorrer o array utilizando FOR
+               for (let i = 0; i < alunos.length; i++) {
+                    // Mostrar:
+                    // Nome / Idade / Nota
+                    console.log("====================");
+                    console.log("id: " + (i + 1));
+                    console.log("Nome: " + alunos[i].nome);
+                    console.log("Idade: " + alunos[i].idade);
+                    console.log("Nota: " + alunos[i].nota);
+                    console.log("====================");
+                }
+            } else {
+                console.log("\n Não existem Alunos cadastrados:");
+            }
 
             break;
 
@@ -96,11 +98,25 @@ while (executando) {
             // TODO:
             // Percorrer o array procurando
             // pelo nome informado.
+            for (let i = 0; i < alunos.length; i++) {
+                if (alunos[i].nome.toLowerCase() === nomeBusca) {
+                    // Se encontrar:
+                    // - Mostrar os dados
+                    console.log("====================");
+                    console.log("\n Aluno encontrado!");
+                    console.log("Nome: " + alunos[i].nome);
+                    console.log("Idade: " + alunos[i].idade);
+                    console.log("Nota: " + alunos[i].nota);
+                    console.log("====================");
+                    
+                    // - Alterar alunoEncontrado para true
+                    alunoEncontrado = true;
+                    console.log("Aluno encontrado com sucesso!");
 
-            // Se encontrar:
-            // - Mostrar os dados
-            // - Alterar alunoEncontrado para true
-            // - Utilizar BREAK
+                    // - Utilizar BREAK
+                    break;
+        }
+    }
 
 
             if (!alunoEncontrado) {
@@ -115,25 +131,45 @@ while (executando) {
         // --------------------------------
         case "4":
 
-            console.log("\n--- SITUACAO DOS ALUNOS ---");
+    console.log("\n--- SITUAÇÃO DOS ALUNOS ---");
 
-            // TODO:
-            // Percorrer todos os alunos
+    if (alunos.length === 0) {
+        console.log("Nenhum aluno cadastrado.");
+        break;
+    }
 
-            // Se nota >= 7
-            //    Aprovado
-            //
-            // Senão se nota >= 5
-            //    Recuperacao
-            //
-            // Senão
-            //    Reprovado
+    for (let i = 0; i < alunos.length; i++) {
+
+        let situacao = "";
+
+        if (alunos[i].nota >= 7) {
+            situacao = "Aprovado";
+
+        } else if (alunos[i].nota >= 5) {
+            situacao = "Recuperação";
+
+        } else {
+            situacao = "Reprovado";
+        }
+
+        console.log("====================");
+        console.log("Nome: " + alunos[i].nome);
+        console.log("Idade: " + alunos[i].idade);
+        console.log("Nota: " + alunos[i].nota);
+        console.log("Situação: " + situacao);
+        console.log("====================");
+    }
+
+    break;
 
 
-            break;
+
+                    
 
 
-        // --------------------------------
+
+
+        // -------------------------------
         // SAIR
         // --------------------------------
         case "5":
